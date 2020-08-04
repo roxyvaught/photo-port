@@ -8,7 +8,8 @@ const categories = [
 ]
 const mockCurrentCategory = jest.fn();
 const mockSetCurrentCategory = jest.fn();
-
+const mockContactSelected = jest.fn();
+const mockSetContactSelected = jest.fn();
 afterEach(cleanup);
 
 describe('Nav component', () => {
@@ -18,15 +19,19 @@ describe('Nav component', () => {
         categories={categories}
         setCurrentCategory={mockSetCurrentCategory}
         currentCategory={mockCurrentCategory}
+        contactSelected={mockContactSelected}
+        setContactSelected={mockSetContactSelected}
       />);
-    })
+    });
   
     //snapshot test
     it('matches snapshot', () => {
         const { asFragment } = render(<Nav
           categories={categories}
           setCurrentCategory={mockSetCurrentCategory}
-          currentCategory={mockCurrentCategory}
+          currentCategory={mockCurrentCategory}  
+          contactSelected={mockContactSelected}
+          setContactSelected={mockSetContactSelected}
         />);
         // assert value comparison 
     expect(asFragment()).toMatchSnapshot();
@@ -38,7 +43,9 @@ describe('Nav component', () => {
     const { getByLabelText } = render(<Nav
       categories={categories}
       setCurrentCategory={mockSetCurrentCategory}
-      currentCategory={mockCurrentCategory}
+      currentCategory={mockCurrentCategory}  
+      contactSelected={mockContactSelected}
+      setContactSelected={mockSetContactSelected}
     />);
   
     expect(getByLabelText('camera')).toHaveTextContent('📸');
@@ -50,7 +57,9 @@ describe('Nav component', () => {
       const { getByTestId } = render(<Nav
         categories={categories}
         setCurrentCategory={mockSetCurrentCategory}
-        currentCategory={mockCurrentCategory}
+        currentCategory={mockCurrentCategory}  
+        contactSelected={mockContactSelected}
+        setContactSelected={mockSetContactSelected}
       />);
       expect(getByTestId('link')).toHaveTextContent('Oh Snap!');
       expect(getByTestId('about')).toHaveTextContent('About me');
